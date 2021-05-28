@@ -1,0 +1,14 @@
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title #{docTitle}
+        link(rel="stylesheet", href="/css/bulma.css")
+        block styles
+    body
+        nav.navbar(role="navigation" aria-label="main navigation")
+                .navbar-menu
+                    .navbar-start
+                        a.navbar-item(href="/") Shop
+                        a.navbar-item(href="/admin/add-product") Add Product
+        block content

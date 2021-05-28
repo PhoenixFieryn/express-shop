@@ -1,0 +1,30 @@
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a href="/" class="navbar-item <%= path === '/' ? 'is-active' : '' %>">Shop</a>
+        <div role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </div>
+    </div>
+    <div class="navbar-menu" id="navMenu">
+        <div class="navbar-end">
+            <a href="/products" class="navbar-item <%= path === '/products' ? 'is-active' : '' %>">Products</a>
+            <% if (isAuthenticated) { %>
+                <a href="/cart" class="navbar-item <%= path === '/cart' ? 'is-active' : '' %>">Cart</a>
+                <a href="/orders" class="navbar-item <%= path === '/orders' ? 'is-active' : '' %>">Orders</a>
+                <a href="/admin/add-product"
+                    class="navbar-item <%= path === '/admin/add-product' ? 'is-active' : '' %>">Add
+                    Product</a>
+                <a href="/admin/products"
+                    class="navbar-item <%= path === '/admin/add-product' ? 'is-active' : '' %>">Admin
+                    Products</a>
+                <a href="#" class="navbar-item logout-btn" data-csrf-token="<%= csrfToken %>">Logout</a>
+                <% } else { %>
+                    <a href="/login" class="navbar-item <%= path === '/login' ? 'is-active' : '' %>">Login</a>
+                    <a href="/signup" class="navbar-item <%= path === '/signup' ? 'is-active' : '' %>">Signup</a>
+                    <% } %>
+
+        </div>
+    </div>
+</nav>

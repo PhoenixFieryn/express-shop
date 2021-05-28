@@ -1,0 +1,60 @@
+<%- include('../includes/head.ejs') %>
+    </head>
+
+    <body>
+        <%- include('../includes/nav.ejs') %>
+            <div class="hero is-light">
+                <div class="hero-body">
+                    <div class="container">
+                        <%- include('../includes/breadcrumbs.ejs') %>
+                            <h1 class="title">Your Orders</h1>
+                    </div>
+                </div>
+            </div>
+            <section class="section">
+                <div class="container">
+                    <% if (orders.length>=0) { orders.forEach(order=> {%>
+
+                        <div class="box">
+                            <h5 class="title is-5">Order #<%= order._id %>
+                            </h5>
+                            <% order.products.forEach(p=> {%>
+                                <article class="media">
+                                    <div class="media-content">
+                                        <div class="content">
+                                            <p>
+                                                <strong>
+                                                    <a href="/products/<%= p.product._id %>">
+                                                        <%= p.product.title %>
+                                                    </a>
+                                                </strong>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <article class="media-right level is-mobile">
+                                        <div class="level-left">
+                                            <div class="level-item">
+                                                <p>Price: $<%= (p.product.price * p.quantity).toFixed(2) %>
+                                                </p>
+                                            </div>
+                                            <div class="level-item">
+                                                <p>Quantity: <%= p.quantity%>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </article>
+                                <% }) %>
+                                    <a href="/orders/<%=order._id%>">
+                                        <button class="button mt-4">
+                                            Invoice
+                                        </button>
+                                    </a>
+                        </div>
+
+                        <% })} %>
+
+
+                </div>
+            </section>
+            <%- include('../includes/end.ejs') %>

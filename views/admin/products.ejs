@@ -1,0 +1,54 @@
+<%- include('../includes/head.ejs') %>
+    <script src="/js/deleteItem.js"></script>
+    </head>
+
+    <body>
+        <%- include('../includes/nav.ejs') %>
+            <div class="hero is-light">
+                <div class="hero-body">
+                    <div class="container">
+                        <%- include('../includes/breadcrumbs.ejs') %>
+                            <h1 class="title">My Products</h1>
+                    </div>
+                </div>
+            </div>
+            <section class="section">
+                <div class="container">
+                    <% if (prods.length> 0){ %>
+                        <div class="tile is-ancestor is-flex-wrap-wrap">
+                            <% for (let product of prods) { %>
+                                <div class="tile is-parent is-4">
+                                    <div class="tile is-child card">
+                                        <div class="card-image">
+                                            <figure class="image is-4by3 product_card-image">
+                                                <img src="/<%= product.imageUrl %>" alt="<%= product.title %>">
+                                            </figure>
+                                        </div>
+                                        <div class="card-content">
+                                            <div class="title is-4">
+                                                <%= product.title %>
+                                            </div>
+                                            <div class="subtitle is-6">
+                                                $<%= parseInt(product.price).toFixed(2) %>
+                                            </div>
+                                            <div class="content product_card-content--description">
+                                                <%= product.description %>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <a href="/admin/edit-product/<%= product._id %>?edit=true"
+                                                class="card-footer-item">Edit</a>
+                                            <a class="card-footer-item has-text-danger delete-item" type="button"
+                                                data-product-id="<%= product._id %>" data-csrf-token="<%=csrfToken%>"
+                                                onClick="deleteProduct(this)">Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% } %>
+                        </div>
+                        <%} else { %>
+                            <h1 class="subtitle">No products found.</h1>
+                            <% } %>
+                </div>
+            </section>
+            <%- include('../includes/end.ejs') %>

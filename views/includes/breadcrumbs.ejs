@@ -1,0 +1,23 @@
+<% if (path !=='/' ){ let splitPath=path.split('/').filter(item=> item); let
+    lastPath=splitPath.pop(); let
+    combinedPath='/' %>
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+
+        <ul>
+            <li><a href="/">Shop</a></li>
+
+            <% for (let element of splitPath) { combinedPath +=element + '/' ; if (element !=='admin' ) {%>
+                <li><a href="<%=combinedPath%>">
+                        <%=element.charAt(0).toUpperCase() + element.substring(1)%>
+                    </a></li>
+                <% }else { %>
+                    <li class="is-active"><a href="#" aria-current="page">
+                            <%=element.charAt(0).toUpperCase() + element.substring(1)%>
+                        </a></li>
+                    <% }} %>
+                        <li class="is-active"><a href="#" aria-current="page">
+                                <%= lastPath.charAt(0).toUpperCase() + lastPath.substring(1)%>
+                            </a></li>
+        </ul>
+    </nav>
+    <% } %>

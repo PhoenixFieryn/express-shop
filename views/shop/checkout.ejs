@@ -1,0 +1,78 @@
+<%- include('../includes/head.ejs') %>
+    <script src="https://js.stripe.com/v3/"></script>
+    </head>
+
+    <body>
+        <%- include('../includes/nav.ejs') %>
+            <div class="hero is-light">
+                <div class="hero-body">
+                    <div class="container">
+                        <%- include('../includes/breadcrumbs.ejs') %>
+                            <h1 class="title">Checkout</h1>
+                    </div>
+                </div>
+            </div>
+            <section class="section">
+                <div class="container">
+                    <% if (products.length> 0) { %>
+                        <% products.forEach(p=> { %>
+                            <article class="media">
+                                <figure class="media-left cart_product--image pr-4">
+                                    <p class="image is-64x64">
+                                        <img src="/<%= p.productId.imageUrl %>" alt="">
+                                    </p>
+                                </figure>
+                                <div class="media-content">
+                                    <div class="content">
+                                        <p>
+                                            <strong>
+                                                <a href="/products/<%= p.productId._id %>">
+                                                    <%= p.productId.title %>
+                                                </a>
+                                            </strong>
+                                        </p>
+                                    </div>
+                                </div>
+                                <article class="media-right level is-mobile">
+                                    <div class="level-left">
+                                        <div class="level-item">
+                                            <p>Price: $<%= (p.productId.price * p.quantity).toFixed(2) %>
+                                            </p>
+                                        </div>
+                                        <div class="level-item">
+                                            <p>Quantity: <%= p.productId.quantity %>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </article>
+                            </article>
+                            <% }) %>
+                                <p>Total Sum: <%=totalSum%>
+                                </p>
+                                <!-- <form action="/create-order" method="POST">
+                                    <input type="hidden" class="input" name="_csrf" value="<%= csrfToken %>">
+                                    <div class="field is-grouped is-grouped-right">
+                                        <div class="control">
+                                            <button class="button" type="submit">Checkout</button>
+                                        </div>
+                                    </div>
+                                </form> -->
+
+                                <div class="container">
+                                    <button class="button" id="order-btn">Order</button>
+                                    <script>
+                                        let stripe = Stripe('pk_test_51IYIneL6LKdW7TRAUCYkhVZTeykZLgSxgSv1zNhCWmO2XvBNrsHYJIyOZG4R6Cw8dUU5Ca6SuvCZl1OrhBEHzfhH00RcXmICqs')
+                                        let orderBtn = document.getElementById('order-btn');
+                                        orderBtn.addEventListener('click', function () {
+                                            stripe.redirectToCheckout({
+                                                sessionId: '<%=sessionId%>'
+                                            });
+                                        })
+                                    </script>
+                                </div>
+
+                                <% } %>
+                </div>
+            </section>
+
+            <%- include('../includes/end.ejs') %>

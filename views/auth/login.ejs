@@ -1,0 +1,48 @@
+<%- include('../includes/head.ejs') %>
+    </head>
+
+    <body>
+        <%- include('../includes/nav.ejs') %>
+            <div class="hero is-light">
+                <div class="hero-body">
+                    <div class="container">
+                        <%- include('../includes/breadcrumbs.ejs') %>
+                            <h1 class="title">
+                                <%=pageTitle%>
+                            </h1>
+                    </div>
+                </div>
+            </div>
+            <section class="section">
+                <div class="container">
+                    <% if (messages.length> 0) {
+                        messages.forEach((message)=> { %>
+                        <%- include('../includes/message.ejs', { messageClass: message.type, messageHeader:
+                            message.header, messageBody: message.body }) %>
+                            <% })} %>
+                                <form action="/login" method="POST" class="mb-4">
+                                    <div class="field">
+                                        <label class="label">Email</label>
+                                        <div class="control">
+                                            <input type="email" class="input" name="email" placeholder="Email">
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label class="label">Password</label>
+                                        <div class="control">
+                                            <input type="password" class="input" name="password" placeholder="Password">
+                                        </div>
+                                    </div>
+                                    <input type="hidden" class="input" name="_csrf" value="<%= csrfToken %>">
+                                    <div class="field">
+                                        <div class="control">
+                                            <button type="submit" class="button is-link">
+                                                Login
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <a href="/reset" class="has-text-danger">Reset password</a>
+                </div>
+            </section>
+            <%- include('../includes/end.ejs') %>

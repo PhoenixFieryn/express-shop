@@ -1,0 +1,23 @@
+.product-details_image {
+  width: 30%;
+}
+
+.product-details_description {
+  margin: 2rem auto;
+}
+
+.product_card-image > img {
+  padding: 1rem;
+  object-fit: contain;
+}
+
+.product_card-content--description {
+  height: 1.4rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.cart_product--image {
+  border-right: 1px solid hsl(0, 0%, 86%);
+}

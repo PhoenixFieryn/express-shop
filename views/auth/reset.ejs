@@ -1,0 +1,40 @@
+<%- include('../includes/head.ejs') %>
+    </head>
+
+    <body>
+        <%- include('../includes/nav.ejs') %>
+            <div class="hero is-light">
+                <div class="hero-body">
+                    <div class="container">
+                        <%- include('../includes/breadcrumbs.ejs') %>
+                            <h1 class="title">
+                                <%=pageTitle%>
+                            </h1>
+                    </div>
+                </div>
+            </div>
+            <section class="section">
+                <div class="container">
+                    <% messages.forEach((message)=> { %>
+                        <%- include('../includes/message.ejs', { messageClass: message.type, messageHeader:
+                            message.header, messageBody: message.body }) %>
+                            <% }) %>
+                                <form action="/reset" method="POST">
+                                    <div class="field">
+                                        <label class="label">Email</label>
+                                        <div class="control">
+                                            <input type="email" class="input" name="email" placeholder="Email">
+                                        </div>
+                                    </div>
+                                    <input type="hidden" class="input" name="_csrf" value="<%= csrfToken %>">
+                                    <div class="field">
+                                        <div class="control">
+                                            <button type="submit" class="button is-link">
+                                                Reset Password
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                </div>
+            </section>
+            <%- include('../includes/end.ejs') %>

@@ -1,0 +1,38 @@
+<%- include('../includes/head.ejs') %>
+    <script src="/js/addToCart.js"></script>
+    </head>
+
+    <body>
+        <%- include('../includes/nav.ejs') %>
+            <div class="hero is-light">
+                <div class="hero-body">
+                    <div class="container">
+                        <%- include('../includes/breadcrumbs.ejs') %>
+                            <h1 class="title">
+                                <%= typeof removed !=='undefined' ? pageTitle : product.title %>
+                            </h1>
+                            <h2 class="subtitle">
+                                <%= typeof removed !=='undefined' ? removedMessage :
+                                    `$${parseInt(product.price).toFixed(2)}` %>
+                            </h2>
+                    </div>
+                </div>
+            </div>
+            <section class="section">
+                <div class="container">
+                    <% if (typeof removed==='undefined' ) { %>
+                        <figure class="image is4by3 product-details_image">
+                            <img src="/<%= product.imageUrl %>" alt="">
+                        </figure>
+                        <p class="product-details_description">
+                            <%= product.description %>
+                        </p>
+                        <% if (isAuthenticated) { %>
+                            <button class="button add-to-cart" type="submit" data-product-id="<%= product._id %>"
+                                data-csrf-token="<%=csrfToken%>">Add to
+                                Cart</button>
+                            <% } %>
+                                <% } %>
+                </div>
+            </section>
+            <%- include('../includes/end.ejs') %>

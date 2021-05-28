@@ -1,0 +1,39 @@
+<div class="container mt-5">
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <% if (hasPreviousPage) { %>
+            <a href="?page=<%=previousPage%>" class="pagination-previous">Previous</a>
+            <% } %>
+                <% if (hasNextPage) { %>
+                    <a href="?page=<%=nextPage%>" class="pagination-next">Next</a>
+                    <% } %>
+
+                        <ul class="pagination-list">
+                            <% if (currentPage !==1) {%>
+                                <li><a href="?page=1" class="pagination-link">1</a>
+                                </li>
+                                <% } %>
+                                    <% if (hasFirstEllipses) { %>
+                                        <li><span class="pagination-ellipsis">&hellip;</span>
+                                        </li>
+                                        <% } %>
+                                            <li><a href="?page=<%=currentPage%>" class="pagination-link is-current"
+                                                    aria-label="Goto page <%=currentPage%>">
+                                                    <%=currentPage%>
+                                                </a>
+                                            </li>
+                                            <% if (hasSecondEllipse) { %>
+                                                <li><span class="pagination-ellipsis">&hellip;</span>
+                                                </li>
+                                                <% } %>
+
+                                                    <% if (currentPage !==lastPage) {%>
+                                                        <li><a href="?page=<%=lastPage%>" class="pagination-link"
+                                                                aria-label="Goto page <%=lastPage%>">
+                                                                <%=lastPage%>
+                                                            </a>
+                                                        </li>
+                                                        <% } %>
+
+                        </ul>
+    </nav>
+</div>

@@ -1,0 +1,21 @@
+extends layouts/main-layout.pug
+
+block content
+    section.section
+        .container
+            h1.title My Products
+            if prods.length > 0
+                .tile.is-ancestor.is-flex-wrap-wrap
+                    each product in prods
+                        .tile.is-parent.is-4
+                            .tile.is-child.card
+                                .card-image
+                                    figure.image.is-4by3
+                                        img(src="https://bulma.io/images/placeholders/1280x960.png", alt="")
+                                .card-content
+                                    .title.is-4 #{product.title}
+                                    .content Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod culpa veritatis sapiente doloremque ut repudiandae cum, delectus ipsam obcaecati eaque.
+                                .card-footer
+                                    a.card-footer-item Add to Cart
+            else
+                h1.subtitle No products.
